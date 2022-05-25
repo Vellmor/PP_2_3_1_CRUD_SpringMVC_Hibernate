@@ -11,4 +11,6 @@ public interface UserService {
     List<User> listUsers();
 
     User get(long id);
+
+    void update(long id, User updatedUser);
 }

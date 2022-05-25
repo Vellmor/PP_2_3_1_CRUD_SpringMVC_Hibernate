@@ -1,10 +1,9 @@
-package ru.kata.springmvcapp.rest;
+package ru.kata.springmvcapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.kata.springmvcapp.dao.UserDao;
 import ru.kata.springmvcapp.model.User;
 import ru.kata.springmvcapp.service.UserService;
 
@@ -32,14 +31,25 @@ public class UsersController {
     }
 
     @GetMapping("/new")
-    public String newUser(Model model) {
-        model.addAttribute(new User());
+    public String newUser(@ModelAttribute("user") User user) {
         return "users/new";
     }
 
     @PostMapping()
     public String create(@ModelAttribute("user") User user) {
         userService.add(user);
+        return "redirect:/users";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String edit(Model model, @RequestParam("id") int id) {
+        model.addAttribute("user", userService.get(id));
+        return "users/edit";
+    }
+
+    @PatchMapping("/id")
+    public String update(@ModelAttribute("user") User user, @RequestParam("id") int id) {
+        userService.update(id, user);
         return "redirect:/users";
     }
 }

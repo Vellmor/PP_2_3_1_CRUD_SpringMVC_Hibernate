@@ -11,4 +11,6 @@ public interface UserDao {
     List<User> listUsers();
 
     User show(long id);
+
+    void update(long id, User updatedUser);
 }

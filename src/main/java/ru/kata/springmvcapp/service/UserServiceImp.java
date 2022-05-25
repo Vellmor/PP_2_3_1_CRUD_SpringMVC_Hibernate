@@ -34,4 +34,9 @@ public class UserServiceImp implements UserService {
    @Override
    public User get(long id) { return userDao.show(id); }
 
+   @Override
+   public void update(long id, User updatedUser) {
+      userDao.update(id, updatedUser);
+   }
+
 }

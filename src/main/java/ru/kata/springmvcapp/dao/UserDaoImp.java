@@ -38,4 +38,12 @@ public class UserDaoImp implements UserDao {
       return query.getSingleResult();
    }
 
+   @Override
+   @SuppressWarnings("unchecked")
+   public void update(long id, User updatedUser) {
+      //TODO change realisation
+      TypedQuery<User> query=sessionFactory.getCurrentSession().createQuery("from User u where u.id = :id");
+      query.setParameter("id", id);
+   }
+
 }
