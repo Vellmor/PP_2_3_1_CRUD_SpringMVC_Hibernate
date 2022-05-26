@@ -15,11 +15,11 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 @Configuration
 @ComponentScan("ru.kata.springmvcapp")
 @EnableWebMvc
-public class SpringConfig implements WebMvcConfigurer {
+public class MVCConfig implements WebMvcConfigurer {
     private final ApplicationContext applicationContext;
 
     @Autowired
-    public SpringConfig(ApplicationContext applicationContext) {
+    public MVCConfig(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 

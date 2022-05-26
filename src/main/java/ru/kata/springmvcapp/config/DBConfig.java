@@ -20,12 +20,12 @@ import java.util.Properties;
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
 @ComponentScan(value = "ru.kata.springmvcapp")
-public class AppConfig {
+public class DBConfig {
 
     private final Environment env;
 
     @Autowired
-    public AppConfig(Environment env) {
+    public DBConfig(Environment env) {
         this.env = env;
     }
 
