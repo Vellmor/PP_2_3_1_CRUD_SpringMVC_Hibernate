@@ -10,6 +10,7 @@ import ru.kata.springmvcapp.model.User;
 import java.util.List;
 
 @Service
+@Transactional
 public class UserServiceImp implements UserService {
 
    private final UserDao userDao;
@@ -19,19 +20,16 @@ public class UserServiceImp implements UserService {
       this.userDao = userDao;
    }
 
-   @Transactional
    @Override
    public void add(User user) {
       userDao.add(user);
    }
 
-   @Transactional(readOnly = true)
    @Override
    public List<User> listUsers() {
       return userDao.listUsers();
    }
 
-   @Transactional
    @Override
    public User get(long id) { return userDao.show(id); }
 

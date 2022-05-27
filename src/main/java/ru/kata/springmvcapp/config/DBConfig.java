@@ -24,12 +24,12 @@ public class DBConfig {
 
     private final Environment env;
 
-    @Autowired
+//    @Autowired
     public DBConfig(Environment env) {
         this.env = env;
     }
 
-    @Bean
+//    @Bean
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(env.getProperty("db.driver"));
@@ -39,7 +39,7 @@ public class DBConfig {
         return dataSource;
     }
 
-    @Bean
+//    @Bean
     public LocalSessionFactoryBean getSessionFactory() {
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
         factoryBean.setDataSource(getDataSource());
@@ -53,7 +53,7 @@ public class DBConfig {
         return factoryBean;
     }
 
-    @Bean
+//    @Bean
     public HibernateTransactionManager getTransactionManager() {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();
         transactionManager.setSessionFactory(getSessionFactory().getObject());
