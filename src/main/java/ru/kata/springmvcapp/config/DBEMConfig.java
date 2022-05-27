@@ -47,6 +47,8 @@ public class DBEMConfig {
         emFactory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         Properties properties = new Properties();
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        properties.setProperty("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
+        properties.setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
         emFactory.setJpaProperties(properties);
         emFactory.setPackagesToScan("ru.kata.springmvcapp");
         return emFactory;
