@@ -79,4 +79,12 @@ public class User {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+    public User update(User user) {
+        this.firstName = user.getFirstName();
+        this.secondName = user.getSecondName();
+        this.age = user.getAge();
+        this.gender = user.getGender();
+        return this;
+    }
 }

@@ -1,10 +1,9 @@
 package ru.kata.springmvcapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.kata.springmvcapp.dao.UserDao;
+import ru.kata.springmvcapp.repository.UserRepository;
 import ru.kata.springmvcapp.model.User;
 
 import java.util.List;
@@ -13,33 +12,36 @@ import java.util.List;
 @Transactional
 public class UserServiceImp implements UserService {
 
-   private final UserDao userDao;
+   private final UserRepository userRepository;
 
    @Autowired
-   public UserServiceImp(@Qualifier("userDaoEMImp") UserDao userDao) {
-      this.userDao = userDao;
+   public UserServiceImp(UserRepository userDao) {
+      this.userRepository = userDao;
    }
 
    @Override
    public void add(User user) {
-      userDao.add(user);
+      userRepository.save(user);
    }
 
    @Override
    public List<User> listUsers() {
-      return userDao.listUsers();
+      return (List<User>) userRepository.findAll();
    }
 
    @Override
-   public User get(long id) { return userDao.show(id); }
+   public User get(long id) { return userRepository.findById(id).get(); }
 
    @Override
    public void update(long id, User updatedUser) {
-      userDao.update(id, updatedUser);
+      User user = userRepository.findById(id).get();
+      user.update(updatedUser);
+      userRepository.save(user);
    }
 
    @Override
    public void delete(long id) {
-      userDao.delete(id);
+      User user = userRepository.findById(id).get();
+      userRepository.delete(user);
    }
 }
